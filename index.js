@@ -10,7 +10,6 @@ app.use(bodyParser.json({ limit: '700mb' }));
 app.use(bodyParser.urlencoded({ limit: '700mb', extended: true }));
 app.use(cors())
 
-//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZmFyYm9kIiwibGFzdE5hbWUiOiJhbGlha2JhcmkiLCJwaG9uZSI6IjA5MDM2OTMzODgxIiwiYWRtaW4iOnRydWUsImlhdCI6MTY2MDIyMTg4OX0.5cJ7-4M5C3EDQetgkI_bczCGpzHpcEGQDalwVTKLQG0
 
 
 const check_admin = (req, res, next) => {
@@ -47,10 +46,15 @@ app.use("/admin/article", article)
 const course = require("./routs/courses")
 app.use("/admin/course", course)
 
+const { jwt_verify } = require("./helper")
 
 const upload = require("./routs/upload")
-const { jwt_verify } = require("./helper")
 app.use("/upload", upload)
+
+
+const get_data = require("./routs/get")
+app.use("/get", get_data)
+
 
 
 mongoose.connect(process.env.DB, () => {

@@ -41,7 +41,7 @@ router.post("/edit", async (req, res) => {
 })
 
 router.post("/add_videos",async (req, res) => {
-    await Courses.findByIdAndUpdate(req.body.id, { $push: { videos: { ...req.body } } })
+    await Courses.findByIdAndUpdate(req.body._id, { $push: { videos: { ...req.body } } })
     res.json({
         status: true,
         msg: "ویدئو اضافه شد",
